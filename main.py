@@ -1,9 +1,9 @@
 import time
-
-from snake import Snake
 from turtle import Screen
+
 from food import Food
 from scoreBoard import ScoreBoard
+from snake import Snake
 
 screen = Screen()
 screen.tracer(0)
@@ -34,4 +34,11 @@ while game_is_on:
     if tom.head.xcor() > 280 or tom.head.xcor() < -280 or tom.head.ycor() > 280 or tom.head.ycor() < -280:
         scoreBoard.gameOver()
         game_is_on = False
+
+    for i in tom.segment_list:
+        if i == tom.head:
+            pass
+        elif tom.head.distance(i) < 10:
+            game_is_on = False
+            scoreBoard.gameOver()
 screen.exitonclick()
