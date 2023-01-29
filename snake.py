@@ -1,5 +1,4 @@
-from turtle import Turtle, Screen
-import time
+from turtle import Turtle
 
 UP = 90
 DOWN = 270
@@ -14,13 +13,16 @@ class Snake:
         self.screen = screen
 
         for i in self.starting_position:
-            new_segment = Turtle("square")
-            new_segment.color("white")
-            new_segment.penup()
-            new_segment.goto(i)
-            self.segment_list.append(new_segment)
+            self.add_segment(i)
         self.head = self.segment_list[0]
         screen.update()
+
+    def add_segment(self, position):
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.goto(position)
+        self.segment_list.append(new_segment)
 
     def move(self):
         for i in range(len(self.segment_list) - 1, 0, -1):
